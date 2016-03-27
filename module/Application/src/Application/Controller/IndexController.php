@@ -16,6 +16,9 @@ use Zend\View\Model\FeedModel;
 
 class IndexController extends AbstractActionController
 {
+	
+	protected $adapter;
+	
 	public function onBootstrap($e)
 	{
 		/*$e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
@@ -26,7 +29,11 @@ class IndexController extends AbstractActionController
 	
     public function indexAction()
     {
-        return new ViewModel();
+        $adapter = $this->adapter;
+        $statement = $adapter->query('SELECT * FROM testtable');
+        $results = $statement->execute();
+		
+        return new ViewModel(['results' => $results]);
     }
     
     public function rssAction()
@@ -46,4 +53,15 @@ class IndexController extends AbstractActionController
 		//return new JsonModel($output);
         //return new ViewModel();
     }
+    
+    public function getAdapter()
+    {
+		return $this->adapter;
+	}
+	
+	public function setAdapter($adapter)
+    {
+		$this->adapter = $adapter;
+	}
+    
 }

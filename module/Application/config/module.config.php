@@ -10,6 +10,24 @@
 namespace Application;
 
 return array(
+    'controllers' => array(
+        'factories' => array(
+            'application-controller-index' => 'Application\Factory\IndexControllerFactory',
+        ),
+        /*'invokables' => array(
+            
+        ),*/
+    ),
+    'service_manager' => array(
+        'factories' => array(
+            'general-adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+         ),
+        'abstract_factories' => array(
+            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
+            'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+    ),
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -17,8 +35,9 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => 'application-controller-index',
                         'action'     => 'index',
+                        'module'     => 'application',
                     ),
                 ),
             ),
@@ -37,16 +56,15 @@ return array(
             // module. Simply drop new controllers in, and you can access them
             // using the path /application/:controller/:action
             'application' => array(
-                'type'    => 'Literal',
+                'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
                     'route'    => '/application',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
+                        'controller'    => 'application-controller-index',
                         'action'        => 'index',
                     ),
                 ),
-                'may_terminate' => true,
+                /*'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
                         'type'    => 'Segment',
@@ -60,17 +78,8 @@ return array(
                             ),
                         ),
                     ),
-                ),
+                ),*/
             ),
-        ),
-    ),
-    'service_manager' => array(
-        'abstract_factories' => array(
-            'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
-            'Zend\Log\LoggerAbstractServiceFactory',
-        ),
-        'factories' => array(
-            'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
         ),
     ),
     'translator' => array(
@@ -81,11 +90,6 @@ return array(
                 'base_dir' => __DIR__ . '/../language',
                 'pattern'  => '%s.mo',
             ),
-        ),
-    ),
-    'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => Controller\IndexController::class
         ),
     ),
     'view_manager' => array(
