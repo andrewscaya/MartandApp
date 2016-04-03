@@ -13,6 +13,8 @@ class IndexControllerFactory implements FactoryInterface
         $sm = $serviceLocator->getServiceLocator();
         $controller = new IndexController();
         $controller->setAdapter($sm->get('general-adapter'));
+        $controller->setTestTableGateway($sm->get('test-table-gateway'));
+        $controller->setForm($sm->get('martand-form'));
         return $controller;
     }
 }

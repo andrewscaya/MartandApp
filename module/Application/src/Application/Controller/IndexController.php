@@ -13,13 +13,18 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\FeedModel;
+use Application\Model\BackendTrait;
 
 class IndexController extends AbstractActionController
 {
 	
-	protected $adapter;
+	use BackendTrait;
 	
-	public function onBootstrap($e)
+	
+	protected $form;
+	
+
+    public function onBootstrap($e)
 	{
 		/*$e->getApplication()->getEventManager()->getSharedManager()->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', function($e) {
 			$controller = $e->getTarget();
@@ -34,6 +39,31 @@ class IndexController extends AbstractActionController
         $results = $statement->execute();
 		
         return new ViewModel(['results' => $results]);
+    }
+    
+    public function formAction()
+    {
+        $data = '';
+        
+        $person = '';
+        
+        if ($this->getRequest()->isPost()) {
+            
+            $data = $this->params()->fromPost();
+            
+            $fname = $data['fname'];
+            
+            $tableGateway = $this->testTableGateway;
+            
+            $tableGateway->insert(['id' => '', 'name' => $fname]);
+            
+            $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
+            
+            $person = $rowset->current();
+            
+        }
+        
+        return new ViewModel(['form' => $this->form, 'data' => $data, 'person' => $person]);
     }
     
     public function rssAction()
@@ -54,14 +84,20 @@ class IndexController extends AbstractActionController
         //return new ViewModel();
     }
     
-    public function getAdapter()
+    /**
+     * @return the $form
+     */
+    public function getForm()
     {
-		return $this->adapter;
-	}
-	
-	public function setAdapter($adapter)
+        return $this->form;
+    }
+    
+    /**
+     * @param field_type $form
+     */
+    public function setForm($form)
     {
-		$this->adapter = $adapter;
-	}
+        $this->form = $form;
+    }
     
 }

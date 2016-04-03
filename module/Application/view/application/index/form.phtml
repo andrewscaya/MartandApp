@@ -1,0 +1,17 @@
+<?php
+
+if (empty($data)) {
+    
+    $form->setAttributes(['method' => 'POST']);
+    
+    $form->prepare();
+    echo $this->form()->openTag($form);
+    echo $this->formcollection($form);
+    echo $this->form()->closeTag();
+    
+}
+else {
+    
+    echo "<h1>Congratulations, <a href=\"$this->url('application', ['action' => {$person['id']}\">{$person['name']}</a>!</h1>  <p><br /><br /><b>You are now a subscriber!  Your id is {$person['id']}</b></p>";
+    
+}

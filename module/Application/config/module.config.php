@@ -21,6 +21,8 @@ return array(
     'service_manager' => array(
         'factories' => array(
             'general-adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'test-table-gateway' => 'Application\Factory\TestTableGatewayFactory',
+            'martand-form'    => 'Application\Factory\MartandFormFactory',
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
          ),
         'abstract_factories' => array(
@@ -64,12 +66,13 @@ return array(
                         'action'        => 'index',
                     ),
                 ),
-                /*'may_terminate' => true,
+                'may_terminate' => true,
                 'child_routes' => array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            //'route'    => '/[:controller[/:action]]',
+                            'route'    => '/[:action]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
@@ -78,7 +81,7 @@ return array(
                             ),
                         ),
                     ),
-                ),*/
+                ),
             ),
         ),
     ),
