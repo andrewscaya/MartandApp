@@ -1,4 +1,5 @@
 <?php
+
 namespace Application\Form;
 
 use Zend\Form\Form;
@@ -10,7 +11,7 @@ class MartandForm extends Form
     public function buildForm()
     {
         $fname = new Text('fname');
-        $fname->setLabel('Prénom')
+        $fname->setLabel('Prénom: ')
               ->setAttributes(
                   [
                       'size'        => 40,
