@@ -14,6 +14,7 @@ use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\View\Model\FeedModel;
 use Application\Model\BackendTrait;
+use Zend\Db\Adapter\Adapter;
 
 class IndexController extends AbstractActionController
 {
@@ -52,6 +53,17 @@ class IndexController extends AbstractActionController
             $data = $this->params()->fromPost();
             
             $fname = $data['fname'];
+            
+            /* OR :
+             * $insert = $this->sqlObject->insert('testtable');
+             * $insertData = ['id' => '', 'name' => $fname];
+             * $insert->values($insertData);
+             * $selectString = $this->sqlObject->getSqlStringForSqlObject($insert);
+             * $this->adapter->query($selectString, Adapter::QUERY_MODE_EXECUTE);
+             * $statement = $this->adapter->query('SELECT * FROM testtable ORDER BY id DESC LIMIT 1');
+             * $results = $statement->execute();
+             * $person = $results->current();
+             */
             
             $tableGateway = $this->testTableGateway;
             

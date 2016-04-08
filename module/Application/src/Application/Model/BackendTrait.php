@@ -7,6 +7,8 @@ trait BackendTrait
     
     protected $adapter;
     
+    protected $sqlObject;
+    
     protected $testTableGateway;
     
     /**
@@ -25,6 +27,22 @@ trait BackendTrait
         $this->adapter = $adapter;
     }
     
+    /**
+     * @return the $sqlInsert
+     */
+    public function getSqlObject()
+    {
+        return $this->sqlObject;
+    }
+
+    /**
+     * @param field_type $sqlInsert
+     */
+    public function setSqlObject($sqlObject)
+    {
+        $this->sqlObject = $sqlObject;
+    }
+
     /**
      * @return the $testTableGateway
      */
