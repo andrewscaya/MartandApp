@@ -11,6 +11,10 @@ trait BackendTrait
     
     protected $testTableGateway;
     
+    protected $entityManager;
+    
+    protected $entity;
+    
     /**
      * @return the $adapter
      */
@@ -57,6 +61,38 @@ trait BackendTrait
     public function setTestTableGateway($testTableGateway)
     {
         $this->testTableGateway = $testTableGateway;
+    }
+    
+    /**
+     * @return the $entityManager
+     */
+    public function getEntityManager()
+    {
+        return $this->entityManager;
+    }
+
+    /**
+     * @param field_type $entityManager
+     */
+    public function setEntityManager($entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
+     * @return the $entity
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+
+    /**
+     * @param field_type $entity
+     */
+    public function setEntity($entity)
+    {
+        $this->entity = $entity;
     }
 
 }

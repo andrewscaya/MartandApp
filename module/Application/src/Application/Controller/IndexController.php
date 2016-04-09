@@ -54,6 +54,29 @@ class IndexController extends AbstractActionController
             
             $fname = $data['fname'];
             
+            $this->entity->setName($fname);
+            
+            $this->entityManager->persist($this->entity);
+            
+            $this->entityManager->flush();
+            
+            $qb = $this->entityManager->createQueryBuilder();
+            
+            $qb->select('t')
+            ->from('Application\Entity\Testtable', 't')
+            ->where('t.id = :id')
+            ->setParameter(':id', $this->entity->getId());
+            
+            // display info
+            if ($result = $qb->getQuery()->getResult()) {
+                foreach ($result as $personObject) {
+                    $person['id'] = $personObject->getId();
+                    $person['name'] = $personObject->getName();;
+                }
+            } else {
+                echo 'Person Not Found <br />' . PHP_EOL;
+            }
+            
             /* OR :
              * $insert = $this->sqlObject->insert('testtable');
              * $insertData = ['id' => '', 'name' => $fname];
@@ -65,13 +88,12 @@ class IndexController extends AbstractActionController
              * $person = $results->current();
              */
             
-            $tableGateway = $this->testTableGateway;
-            
-            $tableGateway->insert(['id' => '', 'name' => $fname]);
-            
-            $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
-            
-            $person = $rowset->current();
+            /* OR :
+             * $tableGateway = $this->testTableGateway;
+             * $tableGateway->insert(['id' => '', 'name' => $fname]);
+             * $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
+             * $person = $rowset->current();
+             */
             
         }
         
@@ -82,11 +104,11 @@ class IndexController extends AbstractActionController
     {
 		$output = [
 			'title'       => 'Hi Martin!',
-			'link'        => 'http://localhost:81/',
-			'description' => 'http://localhost:81 Martin and Andrew learning ZF2!',
+			'link'        => 'http://localhost:8181/',
+			'description' => 'http://localhost:8181 Martin and Andrew learning ZF2!',
 			'items'        => [
 				'title'       => 'Item 1',
-				'link'        => 'http://localhost:81/application/index/index',
+				'link'        => 'http://localhost:8181/application/index/index',
 				'description' => 'Martin and Andrew learning ZF2!',
 			],
 		];

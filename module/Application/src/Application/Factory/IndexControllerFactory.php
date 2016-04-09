@@ -17,6 +17,8 @@ class IndexControllerFactory implements FactoryInterface
         $controller->setAdapter($adapter);
         $controller->setSqlObject(new Sql($adapter));
         $controller->setTestTableGateway($sm->get('test-table-gateway'));
+        $controller->setEntityManager($sm->get('doctrine-entity-manager'));
+        $controller->setEntity($sm->get('testtable-entity'));
         $controller->setForm($sm->get('martand-form'));
         return $controller;
     }
