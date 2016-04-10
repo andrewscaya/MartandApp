@@ -1,6 +1,6 @@
 <?php
 // entity.manager.php
-$paths = array(BASEDIR . '/module/Application/src/Application/Entity', /* add more as needed */ );
+$paths = array(BASEDIR . DIRECTORY_SEPARATOR . 'module' . DIRECTORY_SEPARATOR . 'Application' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Application' . DIRECTORY_SEPARATOR . 'Entity', /* add more as needed */ );
 
 // external namespaces to reference
 use Doctrine\ORM\Tools\Setup;
@@ -21,6 +21,6 @@ $config   = Setup::createConfiguration(TRUE);
 
 $config->setMetadataDriverImpl($driver);
 
-$dbParams = include __DIR__ . '/database.params.php';
+$dbParams = include __DIR__ . DIRECTORY_SEPARATOR . 'database.params.php';
 
 return EntityManager::create($dbParams, $config);
