@@ -63,19 +63,27 @@ class IndexController extends AbstractActionController
             $qb = $this->entityManager->createQueryBuilder();
             
             $qb->select('t')
-            ->from('Application\Entity\Testtable', 't')
-            ->where('t.id = :id')
-            ->setParameter(':id', $this->entity->getId());
+               ->from('Application\Entity\Testtable', 't')
+               ->where('t.id = :id')
+               ->setParameter(':id', $this->entity->getId());
             
             // display info
-            if ($result = $qb->getQuery()->getResult()) {
-                foreach ($result as $personObject) {
-                    $person['id'] = $personObject->getId();
-                    $person['name'] = $personObject->getName();;
-                }
+            if ($personObject = $qb->getQuery()->getSingleResult()) {
+                $person['id'] = $personObject->getId();
+                $person['name'] = $personObject->getName();
             } else {
                 echo 'Person Not Found <br />' . PHP_EOL;
             }
+            
+            // OR IF MULTIPLE RESULTS : display info
+            /*if ($result = $qb->getQuery()->getResult()) {
+                foreach ($result as $personObject) {
+                    $person['id'] = $personObject->getId();
+                    $person['name'] = $personObject->getName();
+                }
+            } else {
+                echo 'Person Not Found <br />' . PHP_EOL;
+            }*/
             
             /* OR :
              * $insert = $this->sqlObject->insert('testtable');
