@@ -9,7 +9,6 @@
 
 namespace Application;
 
-use Application\Controller\IndexController;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\ModuleRouteListener;
 use Doctrine\ORM\Tools\Setup;
