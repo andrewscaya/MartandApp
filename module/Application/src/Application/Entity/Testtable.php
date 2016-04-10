@@ -1,5 +1,6 @@
 <?php
-
+//Nous devons ajouter nous-mêmes le namespace si le fichier est généré
+//par la console de Doctrine.
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
