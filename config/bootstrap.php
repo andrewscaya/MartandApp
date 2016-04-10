@@ -20,4 +20,4 @@ $autoLoader->add('Doctrine\ORM',         __DIR__ . '/vendor/doctrine/orm/lib');
 $autoLoader->add('Doctrine\Lexer',       __DIR__ . '/vendor/doctrine/lexer/lib');
 
 // add path info for the "Application" namespace
-$autoLoader->add('Application', BASEDIR);
+$autoLoader->add('Application', BASEDIR . DIRECTORY_SEPARATOR . 'module' . DIRECTORY_SEPARATOR . 'Application' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Application');
