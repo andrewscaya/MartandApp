@@ -24,6 +24,7 @@ return array(
             'test-table-gateway' => 'Application\Factory\TestTableGatewayFactory',
             'martand-form'    => 'Application\Factory\MartandFormFactory',
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
+            'form-filter' => 'Application\Factory\MartandFormFilterFactory',
          ),
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',

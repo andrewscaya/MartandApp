@@ -8,6 +8,7 @@ use Zend\Form\Element\Submit;
 
 class MartandForm extends Form
 {
+    
     public function buildForm()
     {
         $fname = new Text('fname');
@@ -17,7 +18,7 @@ class MartandForm extends Form
                       'size'        => 40,
                       'maxlength'   => 30,
                       'required'    => 'required',
-                      'placeholder' => 'Veuillez y inscrire votre prénom',
+                      'placeholder' => 'Veuillez inscrire votre prénom',
                   ]
               );
         

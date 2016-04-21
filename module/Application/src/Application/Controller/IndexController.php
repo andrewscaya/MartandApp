@@ -15,6 +15,9 @@ use Zend\View\Model\JsonModel;
 use Zend\View\Model\FeedModel;
 use Application\Model\BackendTrait;
 use Zend\Db\Adapter\Adapter;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Input;
+use Zend\Validator;
 
 class IndexController extends AbstractActionController
 {

@@ -13,6 +13,8 @@ class MartandFormFactory implements FactoryInterface
     {
         $form = new MartandForm();
         
+        $form->setInputFilter($serviceLocator->get('form-filter'));
+        
         $form->buildForm();
         
         return $form;
