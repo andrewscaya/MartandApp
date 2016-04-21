@@ -23,6 +23,7 @@ return array(
             'general-adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
             'test-table-gateway' => 'Application\Factory\TestTableGatewayFactory',
             'martand-form'    => 'Application\Factory\MartandFormFactory',
+            'martand-post-filter' => 'Application\Factory\MartandFormFilterFactory',
             'translator' => 'Zend\Mvc\Service\TranslatorServiceFactory',
             'form-filter' => 'Application\Factory\MartandFormFilterFactory',
          ),
@@ -61,19 +62,20 @@ return array(
             'application' => array(
                 'type'    => 'Zend\Mvc\Router\Http\Literal',
                 'options' => array(
-                    'route'    => '/application',
+                    //'route'    => '/application',
+                    'route'    => '/register',
                     'defaults' => array(
                         'controller'    => 'application-controller-index',
-                        'action'        => 'index',
+                        'action'        => 'form',
                     ),
                 ),
-                'may_terminate' => true,
+                'may_terminate' => TRUE,
                 'child_routes' => array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            //'route'    => '/[:controller[/:action]]',
-                            'route'    => '/[:action]',
+                            'route'    => '/[:controller[/:action]]',
+                            //'route'    => '/[:action]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
                                 'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
