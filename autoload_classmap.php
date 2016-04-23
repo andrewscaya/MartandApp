@@ -7,7 +7,7 @@ return array(
     'Application\Factory\MartandFormFactory'                                              => __DIR__ . '/module/Application/src/Application/Factory/MartandFormFactory.php',
     'Application\Factory\MartandFormFilterFactory'                                        => __DIR__ . '/module/Application/src/Application/Factory/MartandFormFilterFactory.php',
     'Application\Form\MartandForm'                                                        => __DIR__ . '/module/Application/src/Application/Form/MartandForm.php',
-    'MartandFormFilter'                                                                   => __DIR__ . '/module/Application/src/Application/Form/MartandFormFilter.php',
+    'Application\Form\MartandFormFilter'                                                  => __DIR__ . '/module/Application/src/Application/Form/MartandFormFilter.php',
     'Application\Model\BackendTrait'                                                      => __DIR__ . '/module/Application/src/Application/Model/BackendTrait.php',
     'Application\Model\TestTableGateway'                                                  => __DIR__ . '/module/Application/src/Application/Model/TestTableGateway.php',
     'Application\Controller\IndexController'                                              => __DIR__ . '/module/Application/src/Application/Controller/IndexController.php',
