@@ -9,11 +9,11 @@ use Application\Form\MartandForm;
 class MartandFormFactory implements FactoryInterface
 {
 
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    public function createService(ServiceLocatorInterface $serviceManager)
     {
         $form = new MartandForm();
         
-        //$form->setInputFilter($serviceLocator->getServiceManager()->get('martand-post-filter'));
+        $form->setInputFilter($serviceManager->get('martand-post-filter'));
         
         $form->buildForm();
         

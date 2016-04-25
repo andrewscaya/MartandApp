@@ -11,13 +11,13 @@ class MartandForm extends Form
     public function buildForm()
     {
         $fname = new Text('fname');
-        $fname->setLabel('Prénom: ')
+        $fname->setLabel('First name: ')
               ->setAttributes(
                   [
                       'size'        => 40,
                       'maxlength'   => 30,
                       'required'    => 'required',
-                      'placeholder' => 'Veuillez y inscrire votre prénom',
+                      'placeholder' => 'Please enter your first name to register',
                   ]
               );
         

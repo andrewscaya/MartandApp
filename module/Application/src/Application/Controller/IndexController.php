@@ -48,64 +48,87 @@ class IndexController extends AbstractActionController
         
         $person = '';
         
+        $viewModel = new ViewModel(['form' => $this->form, 'data' => $data, 'person' => $person]);
+        
+        $viewModel->setTemplate('application/index/form.phtml');
+        
         if ($this->getRequest()->isPost()) {
             
             $data = $this->params()->fromPost();
             
-            $fname = $data['fname'];
+            $this->form->setData($data);
             
-            $this->entity->setName($fname);
+            if ($this->form->isValid()) {
             
-            $this->entityManager->persist($this->entity);
-            
-            $this->entityManager->flush();
-            
-            $qb = $this->entityManager->createQueryBuilder();
-            
-            $qb->select('t')
-               ->from('Application\Entity\Testtable', 't')
-               ->where('t.id = :id')
-               ->setParameter(':id', $this->entity->getId());
-            
-            // display info
-            if ($personObject = $qb->getQuery()->getSingleResult()) {
-                $person['id'] = $personObject->getId();
-                $person['name'] = $personObject->getName();
-            } else {
-                echo 'Person Not Found <br />' . PHP_EOL;
-            }
-            
-            // OR IF MULTIPLE RESULTS : display info
-            /*if ($result = $qb->getQuery()->getResult()) {
-                foreach ($result as $personObject) {
+                $fname = $data['fname'];
+                
+                $this->entity->setName($fname);
+                
+                $this->entityManager->persist($this->entity);
+                
+                $this->entityManager->flush();
+                
+                $qb = $this->entityManager->createQueryBuilder();
+                
+                $qb->select('t')
+                   ->from('Application\Entity\Testtable', 't')
+                   ->where('t.id = :id')
+                   ->setParameter(':id', $this->entity->getId());
+                
+                // display info
+                if ($personObject = $qb->getQuery()->getSingleResult()) {
                     $person['id'] = $personObject->getId();
                     $person['name'] = $personObject->getName();
+                } else {
+                    echo 'Person Not Found <br />' . PHP_EOL;
                 }
-            } else {
-                echo 'Person Not Found <br />' . PHP_EOL;
-            }*/
+                
+                // OR IF MULTIPLE RESULTS : display info
+                /*if ($result = $qb->getQuery()->getResult()) {
+                    foreach ($result as $personObject) {
+                        $person['id'] = $personObject->getId();
+                        $person['name'] = $personObject->getName();
+                    }
+                } else {
+                    echo 'Person Not Found <br />' . PHP_EOL;
+                }*/
+                
+                /* OR :
+                 * $insert = $this->sqlObject->insert('testtable');
+                 * $insertData = ['id' => '', 'name' => $fname];
+                 * $insert->values($insertData);
+                 * $selectString = $this->sqlObject->getSqlStringForSqlObject($insert);
+                 * $this->adapter->query($selectString, Adapter::QUERY_MODE_EXECUTE);
+                 * $statement = $this->adapter->query('SELECT * FROM testtable ORDER BY id DESC LIMIT 1');
+                 * $results = $statement->execute();
+                 * $person = $results->current();
+                 */
+                
+                /* OR :
+                 * $tableGateway = $this->testTableGateway;
+                 * $tableGateway->insert(['id' => '', 'name' => $fname]);
+                 * $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
+                 * $person = $rowset->current();
+                 */
+                
+                $viewModel->setVariables(['form' => $this->form, 'data' => $data, 'person' => $person], TRUE);
+                
+            }
+            else {
             
-            /* OR :
-             * $insert = $this->sqlObject->insert('testtable');
-             * $insertData = ['id' => '', 'name' => $fname];
-             * $insert->values($insertData);
-             * $selectString = $this->sqlObject->getSqlStringForSqlObject($insert);
-             * $this->adapter->query($selectString, Adapter::QUERY_MODE_EXECUTE);
-             * $statement = $this->adapter->query('SELECT * FROM testtable ORDER BY id DESC LIMIT 1');
-             * $results = $statement->execute();
-             * $person = $results->current();
-             */
+                $invalidView = new ViewModel();
             
-            /* OR :
-             * $tableGateway = $this->testTableGateway;
-             * $tableGateway->insert(['id' => '', 'name' => $fname]);
-             * $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
-             * $person = $rowset->current();
-             */
+                $invalidView->setTemplate('application/index/invalid.phtml');
+            
+                $invalidView->addChild($viewModel, 'main');
+            
+                return $invalidView;
+            
+            }
             
         }
         
-        return new ViewModel(['form' => $this->form, 'data' => $data, 'person' => $person]);
+        return $viewModel;
     }
     
     public function rssAction()

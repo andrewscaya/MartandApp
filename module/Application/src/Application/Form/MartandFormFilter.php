@@ -10,9 +10,12 @@ class MartandFormFilter extends InputFilter
     
     public function buildFilter()
     {
-        // filter & validate by fields
+        $firstname = new Input('fname');
         
-		//$this->add($firstname);
+        $firstname->getValidatorChain()
+                  ->attachByName('StringLength', array('min' => 1, 'max' => 30));
+        
+        $this->add($firstname);
     }
     
 }
