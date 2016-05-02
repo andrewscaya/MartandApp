@@ -19,10 +19,10 @@ use Zend\Db\Adapter\Adapter;
 class IndexController extends AbstractActionController
 {
 	
-	use BackendTrait;
-	
-	
-	protected $form;
+    use BackendTrait;
+
+
+    protected $form;
 	
 
     public function onBootstrap($e)
@@ -47,10 +47,6 @@ class IndexController extends AbstractActionController
         $data = '';
         
         $person = '';
-        
-        $viewModel = new ViewModel(['form' => $this->form, 'data' => $data, 'person' => $person]);
-        
-        $viewModel->setTemplate('application/index/form.phtml');
         
         if ($this->getRequest()->isPost()) {
             
@@ -79,11 +75,12 @@ class IndexController extends AbstractActionController
                 if ($personObject = $qb->getQuery()->getSingleResult()) {
                     $person['id'] = $personObject->getId();
                     $person['name'] = $personObject->getName();
-                } else {
+                }
+                else {
                     echo 'Person Not Found <br />' . PHP_EOL;
                 }
                 
-                // OR IF MULTIPLE RESULTS : display info
+                // OR IF MULTIPLE RESULTS WITH DOCTRINE : display info
                 /*if ($result = $qb->getQuery()->getResult()) {
                     foreach ($result as $personObject) {
                         $person['id'] = $personObject->getId();
@@ -93,7 +90,7 @@ class IndexController extends AbstractActionController
                     echo 'Person Not Found <br />' . PHP_EOL;
                 }*/
                 
-                /* OR :
+                /* OR (WITH Zend\Db\Adapter\Adapter):
                  * $insert = $this->sqlObject->insert('testtable');
                  * $insertData = ['id' => '', 'name' => $fname];
                  * $insert->values($insertData);
@@ -104,31 +101,41 @@ class IndexController extends AbstractActionController
                  * $person = $results->current();
                  */
                 
-                /* OR :
+                /* OR (WITH Zend\Db\TableGateway\TableGateway):
                  * $tableGateway = $this->testTableGateway;
                  * $tableGateway->insert(['id' => '', 'name' => $fname]);
                  * $rowset = $tableGateway->select(['id' => $tableGateway->lastInsertValue]);
                  * $person = $rowset->current();
                  */
                 
-                $viewModel->setVariables(['form' => $this->form, 'data' => $data, 'person' => $person], TRUE);
+                $viewModel = new ViewModel(['person' => $person]);
+                
+                $viewModel->setTemplate('application/index/valid.phtml');
+                
+                return $viewModel;
                 
             }
-            else {
             
-                $invalidView = new ViewModel();
+            $viewModel = new ViewModel(['form' => $this->form, 'data' => $data,]);
             
-                $invalidView->setTemplate('application/index/invalid.phtml');
+            $viewModel->setTemplate('application/index/form.phtml');
+                        
+            $invalidView = new ViewModel();
             
-                $invalidView->addChild($viewModel, 'main');
+            $invalidView->setTemplate('application/index/invalid.phtml');
             
-                return $invalidView;
+            $invalidView->addChild($viewModel, 'formdiv');
             
-            }
+            return $invalidView;
             
         }
         
+        $viewModel = new ViewModel(['form' => $this->form,]);
+        
+        $viewModel->setTemplate('application/index/form.phtml');
+        
         return $viewModel;
+        
     }
     
     public function rssAction()

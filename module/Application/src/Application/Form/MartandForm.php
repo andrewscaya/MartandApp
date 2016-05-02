@@ -14,7 +14,7 @@ class MartandForm extends Form
         $fname->setLabel('First name: ')
               ->setAttributes(
                   [
-                      'size'        => 40,
+                      'size'        => 35,
                       'maxlength'   => 30,
                       'required'    => 'required',
                       'placeholder' => 'Please enter your first name to register',

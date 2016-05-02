@@ -1,0 +1,9 @@
+<?php
+
+$personId = $person['id'];
+    
+$url = $this->url('home', [], ['query' => ['person' => $personId,]]);
+    
+echo "<h1>Congratulations, <a href=\"$url\">{$person['name']}</a>!</h1>  <p><br /><br /><b>You are now a subscriber!  Your id is {$person['id']}</b>.</p>";
+
+?>
