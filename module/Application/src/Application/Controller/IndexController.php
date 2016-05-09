@@ -39,7 +39,8 @@ class IndexController extends AbstractActionController
         $statement = $adapter->query('SELECT * FROM testtable');
         $results = $statement->execute();
 		
-        return new ViewModel(['results' => $results]);
+        //return new ViewModel(['results' => $results]);
+        return ['results' => $results];
     }
     
     public function formAction()

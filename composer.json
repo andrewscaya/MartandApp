@@ -4,7 +4,8 @@
   "require" : {
     "php" : ">=5.5",
     "zendframework/zendframework" : "~2.5",
-    "doctrine/orm" : "*"
+    "doctrine/orm" : "*",
+    "zf-commons/zfc-twig" : "dev-master"
   },
   "license" : "BSD-3-Clause",
   "keywords" : [ "framework", "zf2" ],
