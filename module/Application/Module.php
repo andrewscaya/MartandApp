@@ -36,7 +36,7 @@ class Module
     {
         return array(
             'Zend\Loader\ClassMapAutoloader' => array(
-                getcwd() . '/autoload_classmap.php',
+                __DIR__ . '/autoload_classmap.php'
             ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
