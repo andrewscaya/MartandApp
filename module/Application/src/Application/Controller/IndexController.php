@@ -145,27 +145,28 @@ class IndexController extends AbstractActionController
         
     }
     
-    public function rssAction()
-    {
-        $rsswire = file_get_contents(getcwd() . '/data/rsswire.json');
+    // Moved to the Rsswire Module
+    // public function rssAction()
+    // {
+    //     $rsswire = file_get_contents(getcwd() . '/data/rsswire.json');
         
-        $rsswire = json_decode($rsswire);
+    //     $rsswire = json_decode($rsswire);
         
-        $output = [
-        	'title'       => 'MartandApp - Our latest member',
-        	'link'        => 'http://localhost:8181/rss',
-        	'description' => $rsswire->fname . ' is our latest member!',
-        	/*'items'        => [
-        		'title'       => 'Our latest member',
-        		'link'        => 'http://localhost:8181/application/index/index',
-        		'description' => 'A description',
-        	],*/
-        ];
+    //     $output = [
+    //     	'title'       => 'MartandApp - Our latest member',
+    //     	'link'        => 'http://localhost:8181/rss',
+    //     	'description' => $rsswire->fname . ' is our latest member!',
+    //     	/*'items'        => [
+    //     		'title'       => 'Our latest member',
+    //     		'link'        => 'http://localhost:8181/application/index/index',
+    //     		'description' => 'A description',
+    //     	],*/
+    //     ];
         
-        return new FeedModel($output);
-        //return new JsonModel($output);
-        //return new ViewModel();
-    }
+    //     return new FeedModel($output);
+    //     //return new JsonModel($output);
+    //     //return new ViewModel();
+    // }
     
     /**
      * @return the $form

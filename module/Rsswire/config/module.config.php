@@ -9,4 +9,31 @@
 
 namespace Rsswire;
 
-return [];
+return [
+    'controllers' => [
+        'invokables' => [
+            'rsswire-controller-index' => Controller\IndexController::class,
+    
+        ],
+    ],
+    'router' => [
+        'routes' => [
+            'rss' => [
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => [
+                    'route'    => '/rss',
+                    'defaults' => [
+                        'controller' => 'rsswire-controller-index',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+        ],
+    ],
+    'view_manager' => array(
+        'strategies'               => ['ViewFeedStrategy'],
+        'display_not_found_reason' => false,
+        'display_exceptions'       => false,
+        'doctype'                  => 'HTML5',
+    ),
+];
