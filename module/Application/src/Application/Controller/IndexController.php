@@ -56,8 +56,14 @@ class IndexController extends AbstractActionController
             $this->form->setData($data);
             
             if ($this->form->isValid()) {
-            
+                
                 $fname = $data['fname'];
+                
+                $em = $this->getEventManager();
+                
+                $em->setIdentifiers('rsswire');
+                
+                $em->trigger('publish', $this, ['fname' => $fname]);
                 
                 $this->entity->setName($fname);
                 
@@ -141,19 +147,23 @@ class IndexController extends AbstractActionController
     
     public function rssAction()
     {
-		$output = [
-			'title'       => 'Hi Martin!',
-			'link'        => 'http://localhost:8181/',
-			'description' => 'http://localhost:8181 Martin and Andrew learning ZF2!',
-			'items'        => [
-				'title'       => 'Item 1',
-				'link'        => 'http://localhost:8181/application/index/index',
-				'description' => 'Martin and Andrew learning ZF2!',
-			],
-		];
-		
-		return new FeedModel($output);
-		//return new JsonModel($output);
+        $rsswire = file_get_contents(getcwd() . '/data/rsswire.json');
+        
+        $rsswire = json_decode($rsswire);
+        
+        $output = [
+        	'title'       => 'MartandApp - Our latest member',
+        	'link'        => 'http://localhost:8181/rss',
+        	'description' => $rsswire->fname . ' is our latest member!',
+        	/*'items'        => [
+        		'title'       => 'Our latest member',
+        		'link'        => 'http://localhost:8181/application/index/index',
+        		'description' => 'A description',
+        	],*/
+        ];
+        
+        return new FeedModel($output);
+        //return new JsonModel($output);
         //return new ViewModel();
     }
     
