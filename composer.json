@@ -1,13 +1,41 @@
 {
   "name" : "zendframework/skeleton-application",
   "description" : "Skeleton Application for ZF2",
+  "license" : "BSD-3-Clause",
+  "keywords" : [ "framework", "zf2" ],
+  "homepage" : "http://framework.zend.com/",
   "require" : {
-    "php" : ">=5.5",
-    "zendframework/zendframework" : "~2.5",
+    "php" : "^5.5",
+    "zendframework/zendframework" : "^2.5",
     "doctrine/orm" : "*",
     "zf-commons/zfc-twig" : "dev-master"
   },
-  "license" : "BSD-3-Clause",
-  "keywords" : [ "framework", "zf2" ],
-  "homepage" : "http://framework.zend.com/"
+  "require-dev": {
+	"phpunit/phpunit": "^4.8",
+	"squizlabs/php_codesniffer": "^2.3.1",
+	"zendframework/zend-console": "^2.5",
+	"zendframework/zend-http": "^2.5",
+	"zendframework/zend-navigation": "^2.5",
+	"zendframework/zend-servicemanager": "^2.5"
+  },
+  "autoload": {
+	"psr-4": {
+		"Application\\": "module/Application/src/Application",
+		"Rsswire\\": "module/Rsswire/src/Rsswire"
+	}
+  },
+  "autoload-dev": {
+	"psr-4": {
+		"ApplicationTest\\": "module/Application/test/ApplicationTest"
+	}
+  },
+  "scripts": {
+	"check": [
+		"@cs",
+		"@test"
+	],
+	"cs": "phpcs",
+	"cs-fix": "phpcbf",
+	"test": "phpunit"
+  }
 }
