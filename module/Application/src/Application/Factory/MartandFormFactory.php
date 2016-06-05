@@ -12,12 +12,11 @@ class MartandFormFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceManager)
     {
         $form = new MartandForm();
-        
+
         $form->setInputFilter($serviceManager->get('martand-post-filter'));
-        
+
         $form->buildForm();
-        
+
         return $form;
     }
-    
 }

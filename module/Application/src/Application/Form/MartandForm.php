@@ -20,12 +20,11 @@ class MartandForm extends Form
                       'placeholder' => 'Please enter your first name to register',
                   ]
               );
-        
+
         $submit = new Submit('submit');
         $submit->setAttributes(['value' => 'Envoyer']);
-        
+
         $this->add($fname)
              ->add($submit);
     }
-    
 }

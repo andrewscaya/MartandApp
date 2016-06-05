@@ -6,5 +6,5 @@ use Zend\Db\TableGateway\TableGateway;
 
 class TestTableGateway extends TableGateway
 {
-    
+
 }

@@ -4,17 +4,17 @@ namespace Application\Model;
 
 trait BackendTrait
 {
-    
+
     protected $adapter;
-    
+
     protected $sqlObject;
-    
+
     protected $testTableGateway;
-    
+
     protected $entityManager;
-    
+
     protected $entity;
-    
+
     /**
      * @return the $adapter
      */
@@ -30,7 +30,7 @@ trait BackendTrait
     {
         $this->adapter = $adapter;
     }
-    
+
     /**
      * @return the $sqlInsert
      */
@@ -62,7 +62,7 @@ trait BackendTrait
     {
         $this->testTableGateway = $testTableGateway;
     }
-    
+
     /**
      * @return the $entityManager
      */
@@ -94,5 +94,4 @@ trait BackendTrait
     {
         $this->entity = $entity;
     }
-
 }

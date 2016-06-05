@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Testtable
 {
-    
+
     /**
      * @var integer
      *
@@ -32,7 +32,7 @@ class Testtable
      */
     private $name;
 
-    
+
     /**
      * Get id
      *
@@ -66,5 +66,4 @@ class Testtable
     {
         return $this->name;
     }
-    
 }
