@@ -34,7 +34,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
                     . DIRECTORY_SEPARATOR
                     . 'config'
                     . DIRECTORY_SEPARATOR
-                    . 'application.config.php'
+                    . 'application.config.test.php'
         );
 
         parent::setUp();
@@ -54,7 +54,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
     public function testIndexActionCanBeAccessed()
     {
         $this->dispatch('/');
-        //$this->assertResponseStatusCode(200);
+        $this->assertResponseStatusCode(200);
 
         $this->assertModuleName('Application');
         $this->assertControllerName('application-controller-index');
