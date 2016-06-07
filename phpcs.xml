@@ -18,4 +18,5 @@
     <!-- Paths to check -->
     <file>./module/Application/src</file>
     <file>./module/Application/test</file>
+    <file>./config</file>
 </ruleset>
