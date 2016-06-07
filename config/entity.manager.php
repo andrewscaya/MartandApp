@@ -1,6 +1,18 @@
 <?php
 // entity.manager.php
-$paths = array(BASEDIR . DIRECTORY_SEPARATOR . 'module' . DIRECTORY_SEPARATOR . 'Application' . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . 'Application' . DIRECTORY_SEPARATOR . 'Entity', /* add more as needed */ );
+$paths = [BASEDIR
+            . DIRECTORY_SEPARATOR
+            . 'module'
+            . DIRECTORY_SEPARATOR
+            . 'Application'
+            . DIRECTORY_SEPARATOR
+            . 'src'
+            . DIRECTORY_SEPARATOR
+            . 'Application'
+            . DIRECTORY_SEPARATOR
+            . 'Entity',
+    /* add more as needed */
+];
 
 // external namespaces to reference
 use Doctrine\ORM\Tools\Setup;
@@ -17,7 +29,7 @@ AnnotationRegistry::registerLoader('class_exists');
 // NOTE: if the flag is set TRUE caching is done in memory
 //       if set to FALSE, will try to use APC, Xcache, Memcache or Redis caching
 //       see: http://docs.doctrine-project.org/en/latest/reference/advanced-configuration.html
-$config   = Setup::createConfiguration(TRUE);
+$config   = Setup::createConfiguration(true);
 
 $config->setMetadataDriverImpl($driver);
 
