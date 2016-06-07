@@ -4,6 +4,8 @@ Martin and Andrew learning ZF2!
 
 [![Build Status](https://travis-ci.org/andrewscaya/MartandApp.svg?branch=master)](https://travis-ci.org/andrewscaya/MartandApp)
 
+Code Coverage: 92.00% covered.
+
 
 Introduction
 ------------
