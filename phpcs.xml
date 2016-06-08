@@ -15,6 +15,14 @@
         </properties>
     </rule>
 
+    <!-- Lines can be 300 chars long (warnings), errors at 400 chars -->
+    <!-- <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="300"/>
+            <property name="absoluteLineLimit" value="400"/>
+        </properties>
+    </rule> -->
+
     <!-- Paths to check -->
     <file>./module/Application/src</file>
     <file>./module/Application/test</file>
